@@ -1,0 +1,32 @@
+import java.util.*;
+public class Solution {
+	public static int[] firstNegative(int[] arr, int n, int k) {
+        // Write your code here.
+	 	int[] ans = new int[arr.length - k + 1];
+        Queue<Integer> negatives = new LinkedList<>();
+
+        int left = 0, right = 0;
+        int ptr = 0;
+        while (right < arr.length) {
+            int ele = arr[right];
+            if (ele < 0) {
+                negatives.add(ele);
+            }
+            if (right - left + 1 < k) {
+                right++;
+            } else if (right - left + 1 == k) {
+                if (negatives.isEmpty()) {
+                    ans[ptr++] = 0;
+                } else {
+                    ans[ptr++] = negatives.peek();
+                    if (arr[left] == negatives.peek()) {
+                        negatives.remove();
+                    }
+                }
+                left++;
+                right++;
+            }
+        }
+        return ans;
+	}
+}
