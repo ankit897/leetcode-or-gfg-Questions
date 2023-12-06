@@ -1,0 +1,17 @@
+class Solution {
+    int countX(int L, int R, int X) {
+        // code here
+        int count =0;
+        for(int i = L+1;i<R;i++){
+            int n = i;
+            while(n!=0){
+                int rem =n%10;
+                if(rem==X){
+                    count++;
+                }
+                n/=10;
+            }
+        }
+        return count;
+    }
+};
